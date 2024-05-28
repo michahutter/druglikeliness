@@ -10,6 +10,8 @@
 #
 # output: compoundname <white space>  druglikeliness score
 #
+# Revision history
+# 28/07/2004 now recognizes spaces or tabs between SMILES and compound name
 
 $INFILE = $ARGV[0] ;     
 
@@ -29,7 +31,8 @@ $nheavy = 0           ;  # number of non-hydrogen atoms
 $nhydr = 0            ;  # number of hydrogen atoms
 
 while(defined($i = <INPU>)) {
-  @cols = split(/\s+/,$i);
+# @cols = split(/\s+/,$i);
+  @cols = split(/[\s\t]+/,$i); # split at spaces or tabs
 
   $smi = " "  ;     # compound SMILES
   $cid = "" ;       # compound CID   will be file name of the .hin file
